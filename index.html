@@ -12,6 +12,9 @@
 <body>
 
 <div class="glow" aria-hidden="true"></div>
+<div class="glow glow-left" aria-hidden="true"></div>
+<div class="glow glow-right" aria-hidden="true"></div>
+<div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
 <div class="grain" aria-hidden="true"></div>
 
 <header class="site-header">
@@ -30,18 +33,24 @@
   <section class="card" id="calc-card">
 
     <div class="field-row">
-      <div class="field">
+      <div class="field currency-field">
         <label for="from-currency">From</label>
-        <select id="from-currency"></select>
+        <div class="select-shell">
+          <img class="flag-icon" id="from-flag" srcset="" alt="" width="20" height="15">
+          <select id="from-currency"></select>
+        </div>
       </div>
       <button type="button" id="swap-btn" aria-label="Swap currencies" title="Swap currencies">
         <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M7 7h11l-3-3M17 17H6l3 3"/>
         </svg>
       </button>
-      <div class="field">
+      <div class="field currency-field">
         <label for="to-currency">To</label>
-        <select id="to-currency"></select>
+        <div class="select-shell">
+          <img class="flag-icon" id="to-flag" srcset="" alt="" width="20" height="15">
+          <select id="to-currency"></select>
+        </div>
       </div>
     </div>
 

@@ -1,36 +1,40 @@
 const CURRENCIES = [
-  { code: "USD", name: "US Dollar", flag: "🇺🇸" },
-  { code: "EUR", name: "Euro", flag: "🇪🇺" },
-  { code: "GBP", name: "British Pound", flag: "🇬🇧" },
-  { code: "JPY", name: "Japanese Yen", flag: "🇯🇵" },
-  { code: "AUD", name: "Australian Dollar", flag: "🇦🇺" },
-  { code: "CAD", name: "Canadian Dollar", flag: "🇨🇦" },
-  { code: "CHF", name: "Swiss Franc", flag: "🇨🇭" },
-  { code: "CNY", name: "Chinese Yuan", flag: "🇨🇳" },
-  { code: "HKD", name: "Hong Kong Dollar", flag: "🇭🇰" },
-  { code: "SGD", name: "Singapore Dollar", flag: "🇸🇬" },
-  { code: "SEK", name: "Swedish Krona", flag: "🇸🇪" },
-  { code: "NOK", name: "Norwegian Krone", flag: "🇳🇴" },
-  { code: "DKK", name: "Danish Krone", flag: "🇩🇰" },
-  { code: "NZD", name: "New Zealand Dollar", flag: "🇳🇿" },
-  { code: "MXN", name: "Mexican Peso", flag: "🇲🇽" },
-  { code: "INR", name: "Indian Rupee", flag: "🇮🇳" },
-  { code: "KRW", name: "South Korean Won", flag: "🇰🇷" },
-  { code: "TRY", name: "Turkish Lira", flag: "🇹🇷" },
-  { code: "ZAR", name: "South African Rand", flag: "🇿🇦" },
-  { code: "BRL", name: "Brazilian Real", flag: "🇧🇷" },
-  { code: "PLN", name: "Polish Zloty", flag: "🇵🇱" },
-  { code: "CZK", name: "Czech Koruna", flag: "🇨🇿" },
-  { code: "HUF", name: "Hungarian Forint", flag: "🇭🇺" },
-  { code: "RON", name: "Romanian Leu", flag: "🇷🇴" },
-  { code: "ILS", name: "Israeli Shekel", flag: "🇮🇱" },
-  { code: "THB", name: "Thai Baht", flag: "🇹🇭" },
-  { code: "IDR", name: "Indonesian Rupiah", flag: "🇮🇩" },
-  { code: "MYR", name: "Malaysian Ringgit", flag: "🇲🇾" },
-  { code: "PHP", name: "Philippine Peso", flag: "🇵🇭" },
-  { code: "ISK", name: "Icelandic Krona", flag: "🇮🇸" },
-  { code: "BGN", name: "Bulgarian Lev", flag: "🇧🇬" },
+  { code: "USD", name: "US Dollar", country: "us" },
+  { code: "EUR", name: "Euro", country: "eu" },
+  { code: "GBP", name: "British Pound", country: "gb" },
+  { code: "JPY", name: "Japanese Yen", country: "jp" },
+  { code: "AUD", name: "Australian Dollar", country: "au" },
+  { code: "CAD", name: "Canadian Dollar", country: "ca" },
+  { code: "CHF", name: "Swiss Franc", country: "ch" },
+  { code: "CNY", name: "Chinese Yuan", country: "cn" },
+  { code: "HKD", name: "Hong Kong Dollar", country: "hk" },
+  { code: "SGD", name: "Singapore Dollar", country: "sg" },
+  { code: "SEK", name: "Swedish Krona", country: "se" },
+  { code: "NOK", name: "Norwegian Krone", country: "no" },
+  { code: "DKK", name: "Danish Krone", country: "dk" },
+  { code: "NZD", name: "New Zealand Dollar", country: "nz" },
+  { code: "MXN", name: "Mexican Peso", country: "mx" },
+  { code: "INR", name: "Indian Rupee", country: "in" },
+  { code: "KRW", name: "South Korean Won", country: "kr" },
+  { code: "TRY", name: "Turkish Lira", country: "tr" },
+  { code: "ZAR", name: "South African Rand", country: "za" },
+  { code: "BRL", name: "Brazilian Real", country: "br" },
+  { code: "PLN", name: "Polish Zloty", country: "pl" },
+  { code: "CZK", name: "Czech Koruna", country: "cz" },
+  { code: "HUF", name: "Hungarian Forint", country: "hu" },
+  { code: "RON", name: "Romanian Leu", country: "ro" },
+  { code: "ILS", name: "Israeli Shekel", country: "il" },
+  { code: "THB", name: "Thai Baht", country: "th" },
+  { code: "IDR", name: "Indonesian Rupiah", country: "id" },
+  { code: "MYR", name: "Malaysian Ringgit", country: "my" },
+  { code: "PHP", name: "Philippine Peso", country: "ph" },
+  { code: "ISK", name: "Icelandic Krona", country: "is" },
+  { code: "BGN", name: "Bulgarian Lev", country: "bg" },
 ];
+const CURRENCY_MAP = Object.fromEntries(CURRENCIES.map((c) => [c.code, c]));
+function flagUrl(country) {
+  return `https://flagcdn.com/24x18/${country}.png 1x, https://flagcdn.com/48x36/${country}.png 2x`;
+}
 
 const API_BASE = "https://api.frankfurter.dev/v1";
 
@@ -52,13 +56,26 @@ function populateCurrencySelect(select, defaultCode) {
   CURRENCIES.forEach((c) => {
     const opt = document.createElement("option");
     opt.value = c.code;
-    opt.textContent = `${c.flag} ${c.code}`;
+    opt.textContent = c.code;
     if (c.code === defaultCode) opt.selected = true;
     select.appendChild(opt);
   });
 }
 populateCurrencySelect(fromSelect, "GBP");
 populateCurrencySelect(toSelect, "EUR");
+
+const fromFlag = document.getElementById("from-flag");
+const toFlag = document.getElementById("to-flag");
+function updateFlag(select, flagEl) {
+  const c = CURRENCY_MAP[select.value];
+  if (!c) return;
+  flagEl.srcset = flagUrl(c.country);
+  flagEl.alt = c.code;
+}
+updateFlag(fromSelect, fromFlag);
+updateFlag(toSelect, toFlag);
+fromSelect.addEventListener("change", () => updateFlag(fromSelect, fromFlag));
+toSelect.addEventListener("change", () => updateFlag(toSelect, toFlag));
 
 const today = new Date();
 dateInput.max = today.toISOString().split("T")[0];
@@ -68,6 +85,8 @@ swapBtn.addEventListener("click", () => {
   const a = fromSelect.value;
   fromSelect.value = toSelect.value;
   toSelect.value = a;
+  updateFlag(fromSelect, fromFlag);
+  updateFlag(toSelect, toFlag);
   swapBtn.classList.add("spin");
   setTimeout(() => swapBtn.classList.remove("spin"), 350);
   validateForm();
@@ -239,3 +258,24 @@ function renderResult(r) {
 compareBtn.addEventListener("click", handleCompare);
 
 validateForm();
+
+const cursorGlow = document.getElementById("cursor-glow");
+if (cursorGlow && matchMedia("(pointer: fine)").matches) {
+  let targetX = window.innerWidth / 2;
+  let targetY = window.innerHeight * 0.4;
+  let curX = targetX;
+  let curY = targetY;
+
+  window.addEventListener("pointermove", (e) => {
+    targetX = e.clientX;
+    targetY = e.clientY;
+  });
+
+  function tick() {
+    curX += (targetX - curX) * 0.08;
+    curY += (targetY - curY) * 0.08;
+    cursorGlow.style.transform = `translate(${curX}px, ${curY}px)`;
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
