@@ -4,21 +4,27 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Spreadio — Know your true FX cost</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="blob blob-a"></div>
-<div class="blob blob-b"></div>
-<div class="blob blob-c"></div>
+<div class="glow" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
 
 <header class="site-header">
   <div class="logo">
     <span class="logo-mark">S</span>
     <span class="logo-word">spreadio</span>
   </div>
-  <p class="tagline">Find out how much spread is hiding in your FX quote.</p>
 </header>
+
+<section class="hero-intro">
+  <h1>Know your <span class="accent">real</span> exchange rate.</h1>
+  <p>Compare your FX quote against the live mid-market rate — see exactly what the spread is costing you.</p>
+</section>
 
 <main class="hero">
   <section class="card" id="calc-card">
@@ -105,6 +111,10 @@
 
 <footer class="site-footer">
   <p>Mid-market rates are ECB reference rates supplied via the Frankfurter API. Spreadio is an independent comparison tool and is not affiliated with any bank or payment provider.</p>
+  <a class="credit-link" href="https://www.linkedin.com/in/julian-cornu/" id="linkedin-credit" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.35-1.85 3.59 0 4.25 2.36 4.25 5.44v6.3zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+    <span>Created by Julian</span>
+  </a>
 </footer>
 
 <script src="script.js"></script>

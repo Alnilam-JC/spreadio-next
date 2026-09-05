@@ -52,7 +52,7 @@ function populateCurrencySelect(select, defaultCode) {
   CURRENCIES.forEach((c) => {
     const opt = document.createElement("option");
     opt.value = c.code;
-    opt.textContent = `${c.flag} ${c.code} — ${c.name}`;
+    opt.textContent = `${c.flag} ${c.code}`;
     if (c.code === defaultCode) opt.selected = true;
     select.appendChild(opt);
   });
