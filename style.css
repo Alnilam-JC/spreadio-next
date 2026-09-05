@@ -43,53 +43,17 @@ body {
   top: -260px;
   left: 50%;
   transform: translateX(-50%);
-  width: 1400px;
-  height: 1000px;
+  width: min(2400px, 220vw);
+  height: 1100px;
   opacity: 0.55;
   background:
-    radial-gradient(circle at 40% 30%, rgba(47, 86, 217, 0.45), rgba(47, 86, 217, 0.18) 26%, transparent 48%),
-    radial-gradient(circle at 62% 46%, rgba(123, 149, 242, 0.16), transparent 40%),
-    radial-gradient(circle at 78% 60%, rgba(255, 149, 72, 0.06), transparent 30%);
+    radial-gradient(circle at 50% 28%, rgba(47, 86, 217, 0.42), rgba(47, 86, 217, 0.16) 22%, transparent 46%),
+    radial-gradient(ellipse 900px 700px at 50% 40%, rgba(47, 86, 217, 0.14), transparent 60%);
   animation: glow-pulse 10s var(--ease-out) infinite;
 }
 @keyframes glow-pulse {
   0%, 100% { opacity: 0.45; }
   50% { opacity: 0.7; }
-}
-.glow-left, .glow-right {
-  top: 50%;
-  width: 900px;
-  height: 1300px;
-  transform: translateY(-50%);
-  opacity: 0.4;
-  animation: none;
-}
-.glow-left {
-  left: -520px;
-  background: radial-gradient(circle at 65% 50%, rgba(47, 86, 217, 0.28), rgba(47, 86, 217, 0.1) 30%, transparent 55%);
-}
-.glow-right {
-  left: auto;
-  right: -520px;
-  background: radial-gradient(circle at 35% 50%, rgba(123, 149, 242, 0.2), rgba(123, 149, 242, 0.07) 30%, transparent 55%);
-}
-.cursor-glow {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 0;
-  pointer-events: none;
-  width: 560px;
-  height: 560px;
-  margin-left: -280px;
-  margin-top: -280px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(123, 149, 242, 0.16), rgba(47, 86, 217, 0.07) 45%, transparent 72%);
-  mix-blend-mode: screen;
-  will-change: transform;
-}
-@media (max-width: 900px) {
-  .glow-left, .glow-right { display: none; }
 }
 .grain {
   position: fixed;

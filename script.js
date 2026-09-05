@@ -258,24 +258,3 @@ function renderResult(r) {
 compareBtn.addEventListener("click", handleCompare);
 
 validateForm();
-
-const cursorGlow = document.getElementById("cursor-glow");
-if (cursorGlow && matchMedia("(pointer: fine)").matches) {
-  let targetX = window.innerWidth / 2;
-  let targetY = window.innerHeight * 0.4;
-  let curX = targetX;
-  let curY = targetY;
-
-  window.addEventListener("pointermove", (e) => {
-    targetX = e.clientX;
-    targetY = e.clientY;
-  });
-
-  function tick() {
-    curX += (targetX - curX) * 0.08;
-    curY += (targetY - curY) * 0.08;
-    cursorGlow.style.transform = `translate(${curX}px, ${curY}px)`;
-    requestAnimationFrame(tick);
-  }
-  requestAnimationFrame(tick);
-}
