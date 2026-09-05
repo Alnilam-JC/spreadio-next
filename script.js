@@ -32,7 +32,7 @@ const CURRENCIES = [
   { code: "BGN", name: "Bulgarian Lev", flag: "🇧🇬" },
 ];
 
-const API_BASE = "https://api.frankfurter.app";
+const API_BASE = "https://api.frankfurter.dev/v1";
 
 const fromSelect = document.getElementById("from-currency");
 const toSelect = document.getElementById("to-currency");
