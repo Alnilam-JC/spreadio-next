@@ -45,16 +45,6 @@ body {
   min-height: 100dvh;
 }
 
-.glow {
-  position: fixed;
-  z-index: 0;
-  pointer-events: none;
-  inset: 0;
-  opacity: 0.36;
-  background:
-    radial-gradient(circle 700px at 50% 40px, rgba(47, 86, 217, 0.32), rgba(47, 86, 217, 0.11) 260px, transparent 700px),
-    radial-gradient(circle 900px at 50% 90px, rgba(123, 149, 242, 0.08), transparent 900px);
-}
 .grain {
   position: fixed;
   inset: 0;
