@@ -1,5 +1,5 @@
 :root {
-  --bg: #05070f;
+  --bg: #0a1330;
   --bg-alt: #0a0e1c;
   --panel: rgba(255, 255, 255, 0.045);
   --panel-solid: #10142a;
@@ -45,6 +45,16 @@ body {
   min-height: 100dvh;
 }
 
+.glow {
+  position: fixed;
+  z-index: 0;
+  pointer-events: none;
+  inset: 0;
+  opacity: 0.44;
+  background:
+    radial-gradient(circle 820px at 50% 30px, rgba(47, 86, 217, 0.36), rgba(47, 86, 217, 0.13) 300px, transparent 820px),
+    radial-gradient(circle 1050px at 50% 100px, rgba(123, 149, 242, 0.1), transparent 1050px);
+}
 .grain {
   position: fixed;
   inset: 0;
@@ -156,28 +166,7 @@ body {
   pointer-events: none;
   z-index: 2;
 }
-.card-sheen {
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  pointer-events: none;
-  overflow: hidden;
-  z-index: 0;
-}
-.card-sheen::before {
-  content: "";
-  position: absolute;
-  inset: -20% -60%;
-  background: linear-gradient(100deg, transparent 44%, rgba(255, 255, 255, 0.16) 50%, transparent 56%);
-  background-size: 260% 100%;
-  background-position: 160% 0;
-  animation: card-sheen-sweep 7s ease-in-out infinite;
-}
-@keyframes card-sheen-sweep {
-  0%, 78% { background-position: 160% 0; }
-  92%, 100% { background-position: -60% 0; }
-}
-.card > *:not(.card-sheen) { position: relative; z-index: 1; }
+.card > * { position: relative; z-index: 1; }
 
 .field-row {
   display: flex;
@@ -355,7 +344,7 @@ select option { background: var(--panel-solid); color: var(--ink); }
   pointer-events: none;
   z-index: 2;
 }
-.result-card > *:not(.card-sheen) { position: relative; z-index: 1; }
+.result-card > * { position: relative; z-index: 1; }
 @keyframes reveal {
   from { opacity: 0; transform: translateY(18px) scale(0.98); }
   to { opacity: 1; transform: translateY(0) scale(1); }
